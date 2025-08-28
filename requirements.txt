@@ -2,4 +2,3 @@ Flask>=2.0
 requests>=2.28
 Werkzeug>=2.0
 pywebview>=3.8  # opcional, só se quiser abrir em janela; pode usar navegador se não instalado
-catalogo-de-engenharia-civil
