@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-zinc-950 text-zinc-100 antialiased">
+    <!-- Navbar fixa no topo -->
     <nav class="fixed inset-x-0 top-0 z-50 bg-zinc-900 border-b border-zinc-800">
       <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         <a href="{{ url_for('index') }}" class="font-bold text-emerald-500">Catálogo Salete</a>
@@ -19,8 +20,11 @@
     <div class="h-14" aria-hidden="true"></div>
 
     <div class="max-w-7xl mx-auto px-6 py-8 grid gap-8">
+      <!-- Seção de adicionar/editar item -->
       <section class="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
-        <h2 class="text-xl font-bold text-emerald-500 mb-4">{% if edit_item %}Editar Item{% else %}Adicionar Item{% endif %}</h2>
+        <h2 class="text-xl font-bold text-emerald-500 mb-4">
+          {% if edit_item %}Editar Item{% else %}Adicionar Item{% endif %}
+        </h2>
 
         <form
           method="POST"
@@ -28,6 +32,7 @@
           enctype="multipart/form-data"
           class="grid md:grid-cols-2 gap-4"
         >
+          <!-- Nome do item -->
           <input
             name="nome"
             placeholder="Nome"
@@ -35,19 +40,34 @@
             class="p-2 rounded bg-zinc-800 border border-zinc-700"
             required
           />
-          <input
+
+          <!-- Dropdown de categorias -->
+          <select
             name="categoria"
-            placeholder="Categoria (ou escolha abaixo)"
-            value="{{ edit_item.categoria if edit_item }}"
             class="p-2 rounded bg-zinc-800 border border-zinc-700"
             required
-          />
+          >
+            <!-- Placeholder de seleção -->
+            <option value="" disabled {% if not edit_item %}selected{% endif %}>Escolha uma categoria</option>
+
+            <!-- Itera sobre categorias existentes e marca a categoria do item como selecionada -->
+            {% for c in categories %}
+            <option value="{{ c.nome if c.nome is defined else c }}"
+              {% if edit_item and (edit_item.categoria == (c.nome if c.nome is defined else c)) %}selected{% endif %}>
+              {{ c.nome if c.nome is defined else c }}
+            </option>
+            {% endfor %}
+          </select>
+
+          <!-- Preço -->
           <input
             name="preco"
             placeholder="Preço (ex: 120,00)"
             value="{{ edit_item.preco if edit_item }}"
             class="p-2 rounded bg-zinc-800 border border-zinc-700"
           />
+
+          <!-- URL da imagem -->
           <input
             name="imagem"
             id="imagem-url"
@@ -56,6 +76,7 @@
             class="p-2 rounded bg-zinc-800 border border-zinc-700"
           />
 
+          <!-- Upload de imagem -->
           <div class="flex flex-col gap-2">
             <label class="text-sm text-zinc-100">Arquivo de imagem (opcional)</label>
             <input
@@ -73,10 +94,12 @@
             {% endif %}
           </div>
 
+          <!-- Descrição -->
           <textarea name="descricao" placeholder="Descrição" class="p-2 rounded bg-zinc-800 border border-zinc-700 md:col-span-2">
 {% if edit_item %}{{ edit_item.descricao }}{% endif %}</textarea
           >
 
+          <!-- Botão salvar/atualizar -->
           <button type="submit" class="md:col-span-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white">
             {% if edit_item %}Atualizar{% else %}Salvar{% endif %}
           </button>
@@ -86,6 +109,7 @@
           {% endif %}
         </form>
 
+        <!-- Exibe categorias existentes -->
         {% if categories %}
         <div class="mt-4 text-sm text-zinc-400">
           Categorias existentes:
@@ -98,6 +122,7 @@
         {% endif %}
       </section>
 
+      <!-- Seção de gerenciamento de categorias -->
       <section class="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
         <h2 class="text-xl font-bold text-emerald-500 mb-4">Categorias</h2>
         <form method="POST" action="{{ url_for('admin_adicionar_categoria') }}" class="flex gap-2">
@@ -115,6 +140,7 @@
         </ul>
       </section>
 
+      <!-- Seção de itens cadastrados -->
       <section class="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
         <h2 class="text-xl font-bold text-emerald-500 mb-4">Itens Cadastrados</h2>
 
@@ -128,15 +154,9 @@
               <p class="text-sm text-zinc-400">{{ item.categoria }}</p>
               <p class="text-emerald-500 font-bold mt-1">R$ {{ item.preco }}</p>
               <div class="mt-3 flex gap-2">
-                <a
-                  href="{{ url_for('admin_editar', item_id=id) }}"
-                  class="px-3 py-1 rounded border border-zinc-700 text-emerald-400 hover:bg-zinc-800"
-                  >Editar</a
-                >
+                <a href="{{ url_for('admin_editar', item_id=id) }}" class="px-3 py-1 rounded border border-zinc-700 text-emerald-400 hover:bg-zinc-800">Editar</a>
                 <a href="{{ url_for('admin_excluir', item_id=id) }}" class="px-3 py-1 rounded bg-red-600 hover:bg-red-500 text-white">Excluir</a>
-                <a href="{{ url_for('item_page', item_id=id) }}" class="px-3 py-1 rounded border border-zinc-700 text-emerald-400 hover:bg-zinc-800"
-                  >Ver</a
-                >
+                <a href="{{ url_for('item_page', item_id=id) }}" class="px-3 py-1 rounded border border-zinc-700 text-emerald-400 hover:bg-zinc-800">Ver</a>
               </div>
             </div>
           </div>

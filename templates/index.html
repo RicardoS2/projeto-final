@@ -8,35 +8,50 @@
 </head>
 <body class="bg-zinc-950 text-zinc-100 antialiased">
 
+  <!-- ===================== NAVBAR ===================== -->
   <nav class="fixed inset-x-0 top-0 z-50 bg-zinc-900 border-b border-zinc-800">
     <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+      <!-- Logo / link para home -->
       <a href="{{ url_for('index') }}" class="font-bold text-emerald-500">Catálogo Salete</a>
 
+      <!-- Formulário de busca e filtro de categoria -->
       <form method="GET" action="{{ url_for('index') }}" class="hidden md:flex items-center gap-3" role="search">
+        <!-- Campo de busca por nome -->
         <input name="nome" value="{{ filtro_nome }}" placeholder="Buscar..."
                class="px-3 py-1.5 rounded-lg bg-zinc-800 border border-zinc-700 focus:ring-2 focus:ring-emerald-500" />
+
+        <!-- Dropdown de categorias -->
         <select name="categoria" class="px-3 py-1.5 rounded-lg bg-zinc-800 border border-zinc-700">
+          <!-- Opção padrão: todas as categorias -->
           <option value="">Todas</option>
+          <!-- Lista de categorias existentes -->
           {% for cat in categories %}
+            <!-- Marca como selecionada a categoria filtrada -->
             <option value="{{ cat }}" {% if filtro_categoria == cat %}selected{% endif %}>{{ cat }}</option>
           {% endfor %}
         </select>
+
+        <!-- Botão para aplicar filtro -->
         <button class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white">Filtrar</button>
       </form>
 
+      <!-- Link para página de administração -->
       <div class="flex items-center gap-4">
         <a href="{{ url_for('admin') }}" class="text-emerald-500 hover:underline">Admin</a>
       </div>
     </div>
   </nav>
 
+  <!-- Espaço para compensar altura da navbar fixa -->
   <div class="h-14" aria-hidden="true"></div>
 
+  <!-- ===================== SEÇÃO DE ITENS EM DESTAQUE ===================== -->
   <section class="max-w-7xl mx-auto mt-6 px-6">
     <div class="rounded-xl border border-zinc-800 bg-zinc-900 overflow-x-auto">
       <div class="flex gap-4 p-4">
         {% if items %}
           {% for item in items %}
+            <!-- Card de item clicável -->
             <a href="{{ url_for('item_page', item_id=item.id) }}"
                class="w-64 flex-shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden hover:shadow-lg transition">
               <img src="{{ item.imagem }}" alt="{{ item.nome }}" class="h-40 w-full object-cover" />
@@ -48,16 +63,19 @@
             </a>
           {% endfor %}
         {% else %}
+          <!-- Mensagem caso não haja itens -->
           <div class="p-6 text-zinc-400">Nenhum item disponível.</div>
         {% endif %}
       </div>
     </div>
   </section>
 
+  <!-- ===================== GRID PRINCIPAL DE ITENS ===================== -->
   <main class="max-w-7xl mx-auto px-6 py-8">
     {% if items %}
       <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {% for item in items %}
+          <!-- Card detalhado de cada item -->
           <a href="{{ url_for('item_page', item_id=item.id) }}"
              class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:shadow-lg transition flex flex-col h-[320px]">
             <img src="{{ item.imagem }}" alt="{{ item.nome }}" class="h-40 w-full object-cover" />
@@ -72,10 +90,12 @@
         {% endfor %}
       </div>
     {% else %}
+      <!-- Mensagem caso nenhum produto seja encontrado -->
       <div class="text-center py-20 text-zinc-400">Nenhum produto encontrado.</div>
     {% endif %}
   </main>
 
+  <!-- ===================== RODAPÉ ===================== -->
   <footer class="bg-zinc-900 border-t border-zinc-800 text-zinc-400 py-6 text-center">
     © 2025 Catálogo Salete — Todos os direitos reservados.
   </footer>
