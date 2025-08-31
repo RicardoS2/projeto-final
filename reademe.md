@@ -1,7 +1,9 @@
 # 🏗️ Projeto Final: Catálogo de Engenharia Civil
 
-Este é um projeto de aplicação web em **Python** e **Flask** para gerenciar e visualizar um catálogo de itens de engenharia civil. O sistema pode ser
-executado tanto como uma **aplicação web** quanto como uma **aplicação desktop** usando `pywebview`.
+Este é um projeto de aplicação web em **Python** e **Flask** para gerenciar e
+visualizar um catálogo de itens de engenharia civil. O sistema pode ser
+executado tanto como uma **aplicação web** quanto como uma **aplicação desktop**
+usando `pywebview`.
 
 ---
 
@@ -55,13 +57,15 @@ projeto-final/
 
 ### **Pré-requisitos**
 
-Certifique-se de ter **Python 3.13+** e **pip** instalados. Depois, instale as dependências:
+Certifique-se de ter **Python 3.13+** e **pip** instalados. Depois, instale as
+dependências:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> **Nota:** `pywebview` é opcional. Se não estiver instalado, a aplicação abrirá no navegador.
+> **Nota:** `pywebview` é opcional. Se não estiver instalado, a aplicação abrirá
+> no navegador.
 
 ### **Executando a Versão Web**
 
@@ -98,7 +102,8 @@ python3 app.py
 python run_desktop.py
 ```
 
-3. Uma janela nativa será aberta (se `pywebview` estiver instalado) ou a aplicação será iniciada no navegador.
+3. Uma janela nativa será aberta (se `pywebview` estiver instalado) ou a
+   aplicação será iniciada no navegador.
 
 #### No Linux / macOS
 
@@ -109,14 +114,16 @@ python run_desktop.py
 python3 run_desktop.py
 ```
 
-3. Uma janela nativa será aberta (se `pywebview` estiver instalado) ou a aplicação será iniciada no navegador.
+3. Uma janela nativa será aberta (se `pywebview` estiver instalado) ou a
+   aplicação será iniciada no navegador.
 
 ---
 
 ## 💡 Observações Importantes
 
 - A porta padrão para execução local é **5050**
-- Para desenvolvimento, você pode habilitar o modo de depuração do Flask, mas evite fazer isso em produção
+- Para desenvolvimento, você pode habilitar o modo de depuração do Flask, mas
+  evite fazer isso em produção
 
 ---
 
@@ -124,4 +131,5 @@ python3 run_desktop.py
 
 Para mais informações, entre em contato com o desenvolvedor principal:
 
-- **Ricardo**: [ricardo.menezes@itec.ufpa.br](mailto:ricardo.menezes@itec.ufpa.br)
+- **Ricardo**:
+  [ricardo.menezes@itec.ufpa.br](mailto:ricardo.menezes@itec.ufpa.br)

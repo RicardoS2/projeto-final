@@ -3,18 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ item.nome }} • Catálogo</title>
+    <title>{{ item.nome }} • Catálogo de Engenharia Civil</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-zinc-950 text-zinc-100 antialiased">
     <!-- ===================== NAVBAR ===================== -->
-    <nav class="fixed inset-x-0 top-0 z-50 bg-zinc-900 border-b border-zinc-800">
-      <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <nav
+      class="fixed inset-x-0 top-0 z-50 bg-zinc-900 border-b border-zinc-800"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between"
+      >
         <!-- Link para página inicial -->
-        <a href="{{ url_for('index') }}" class="font-bold text-emerald-500">Catálogo Salete</a>
+        <a href="{{ url_for('index') }}" class="font-bold text-emerald-500"
+          >Catálogo de Engenharia Civil</a
+        >
         <div class="flex items-center gap-4">
           <!-- Link para página de administração -->
-          <a href="{{ url_for('admin') }}" class="text-emerald-500 hover:underline">Admin</a>
+          <a
+            href="{{ url_for('admin') }}"
+            class="text-emerald-500 hover:underline"
+            >Admin</a
+          >
         </div>
       </div>
     </nav>
@@ -24,14 +34,22 @@
 
     <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
     <main class="max-w-5xl mx-auto px-6 py-8">
-      <article class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
+      <article
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
         <!-- Imagem do item -->
-        <img src="{{ item.imagem }}" alt="{{ item.nome }}" class="w-full h-72 object-cover" />
+        <img
+          src="{{ item.imagem }}"
+          alt="{{ item.nome }}"
+          class="w-full h-72 object-cover"
+        />
 
         <div class="p-6 grid gap-6 md:grid-cols-3">
           <!-- Informações principais do item -->
           <header class="md:col-span-2">
-            <h1 class="text-2xl md:text-3xl font-bold text-emerald-500">{{ item.nome }}</h1>
+            <h1 class="text-2xl md:text-3xl font-bold text-emerald-500">
+              {{ item.nome }}
+            </h1>
             <p class="mt-1 text-sm text-zinc-400">{{ item.categoria }}</p>
             <p class="mt-4 text-zinc-200 leading-relaxed whitespace-pre-line">
               <!-- Mostra descrição ou placeholder se estiver vazia -->
@@ -42,9 +60,13 @@
           </header>
 
           <!-- Painel lateral com preço e ações -->
-          <aside class="bg-zinc-900 border border-zinc-800 rounded-lg p-4 h-fit">
+          <aside
+            class="bg-zinc-900 border border-zinc-800 rounded-lg p-4 h-fit"
+          >
             <p class="text-sm text-zinc-400">Preço</p>
-            <p class="text-3xl font-extrabold text-emerald-500 mt-2">R$ {{ item.preco }}</p>
+            <p class="text-3xl font-extrabold text-emerald-500 mt-2">
+              R$ {{ item.preco }}
+            </p>
 
             <div class="mt-4 flex flex-col gap-2">
               <!-- Botão para filtrar por mesma categoria -->
@@ -64,7 +86,12 @@
               </a>
 
               <!-- Link para voltar ao catálogo -->
-              <a href="{{ url_for('index') }}" class="text-sm text-zinc-400 hover:underline text-center mt-2"> Voltar ao catálogo </a>
+              <a
+                href="{{ url_for('index') }}"
+                class="text-sm text-zinc-400 hover:underline text-center mt-2"
+              >
+                Voltar ao catálogo
+              </a>
             </div>
           </aside>
         </div>
@@ -72,8 +99,10 @@
     </main>
 
     <!-- ===================== RODAPÉ ===================== -->
-    <footer class="bg-zinc-900 border-t border-zinc-800 text-zinc-400 py-6 text-center">
-      © 2025 Catálogo Salete — Todos os direitos reservados.
+    <footer
+      class="bg-zinc-900 border-t border-zinc-800 text-zinc-400 py-6 text-center"
+    >
+      © 2025 Catálogo de Engenharia Civil — Todos os direitos reservados.
     </footer>
   </body>
 </html>
