@@ -33,7 +33,7 @@ projeto-final/
 │  ├─ __init__.py
 │  ├─ firebase.py
 │  ├─ itens.py
-│  └─ upload.py
+│
 ├─ static/
 │  ├─ uploads/
 │  └─ css/

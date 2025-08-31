@@ -47,10 +47,7 @@
             class="p-2 rounded bg-zinc-800 border border-zinc-700"
             required
           >
-            <!-- Placeholder de seleção -->
             <option value="" disabled {% if not edit_item %}selected{% endif %}>Escolha uma categoria</option>
-
-            <!-- Itera sobre categorias existentes e marca a categoria do item como selecionada -->
             {% for c in categories %}
             <option value="{{ c.nome if c.nome is defined else c }}"
               {% if edit_item and (edit_item.categoria == (c.nome if c.nome is defined else c)) %}selected{% endif %}>
@@ -61,18 +58,21 @@
 
           <!-- Preço -->
           <input
+            type="number"
             name="preco"
-            placeholder="Preço (ex: 120,00)"
+            placeholder="Preço (ex: 120.00)"
             value="{{ edit_item.preco if edit_item }}"
             class="p-2 rounded bg-zinc-800 border border-zinc-700"
+            step="0.01"
+            min="0"
+            required
           />
 
           <!-- URL da imagem -->
           <input
             name="imagem"
             id="imagem-url"
-            placeholder="URL da Imagem 
-            "
+            placeholder="URL da Imagem"
             value="{{ edit_item.imagem if edit_item }}"
             class="p-2 rounded bg-zinc-800 border border-zinc-700"
           />
